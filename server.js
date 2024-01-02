@@ -9,28 +9,19 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: [domain],
+    origin: "*",
   },
 });
 
 const corsOptions = {
-  origin: [domain],
+  origin: "*",
   methods: ["GET", "POST"],
 };
 
 app.use(cors(corsOptions));
 
-// Additional CORS handling for socket.io
-io.on("connection", (socket) => {
-  console.log(`User connected: ${socket.id}`);
-
-  // Handle CORS for socket.io
-  socket.handshake.headers.origin =
-    socket.handshake.headers.origin || socket.handshake.headers.host;
-});
-
 app.get("/", (req, res) => {
-  res.send("Worked");
+  res.send("Worked again.");
 });
 
 io.on("connection", (socket) => {
