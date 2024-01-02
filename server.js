@@ -9,19 +9,19 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: [domain],
   },
 });
 
 const corsOptions = {
-  origin: "*",
+  origin: [domain],
   methods: ["GET", "POST"],
 };
 
 app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
-  res.send("Worked again.");
+  res.send("Worked.");
 });
 
 io.on("connection", (socket) => {
