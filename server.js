@@ -20,8 +20,17 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+// Additional CORS handling for socket.io
+io.on("connection", (socket) => {
+  console.log(`User connected: ${socket.id}`);
+
+  // Handle CORS for socket.io
+  socket.handshake.headers.origin =
+    socket.handshake.headers.origin || socket.handshake.headers.host;
+});
+
 app.get("/", (req, res) => {
-  res.send("Worked.");
+  res.send("Worked");
 });
 
 io.on("connection", (socket) => {
