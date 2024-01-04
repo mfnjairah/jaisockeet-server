@@ -3,18 +3,18 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 
-const domain = "jaisocket.netlify.app";
+const domain = ["jaisocket.netlify.app", "jaisocket.netlify.app/"];
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: domain,
   },
 });
 
 const corsOptions = {
-  origin: "*",
+  origin: [domain],
   methods: ["GET", "POST"],
 };
 
