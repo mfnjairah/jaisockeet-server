@@ -3,10 +3,7 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 
-const domain = [
-  "https://jaisocket.netlify.app",
-  "https://jaisocket.netlify.app/",
-];
+const domain = ["https://jaisocket.netlify.app"];
 
 const app = express();
 const server = createServer(app);
